@@ -22,7 +22,7 @@ public class ApiBackgroundColor : MonoBehaviour {
 		}
 		catch (Exception e)
 		{
-			print("what the fuck");
+			print(e);
 		}
 	}
 }

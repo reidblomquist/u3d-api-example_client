@@ -41,7 +41,7 @@ public class ApiClient : MonoBehaviour
 	private bool freshRgba = false;
 	private WebClient syncClient = new WebClient();
 
-	IEnumerator KeepRgbaFresh()
+	IEnumerator RgbaCoroutine()
 	{
 		while (freshRgba)
 		{
@@ -58,21 +58,39 @@ public class ApiClient : MonoBehaviour
 		}
 	}
 
+	public void StopRgbaCoroutine()
+	{
+		freshRgba = false;
+		try
+		{
+			StopCoroutine(RgbaCoroutine());
+		}
+		catch (Exception e)
+		{
+			print(e);
+		}
+	}
+
 	#endregion
 
-	public void Start()
+	void Start()
 	{
 		if (freshRgba == false)
 		{
 			try
 			{
 				freshRgba = true;
-				StartCoroutine(KeepRgbaFresh());
+				StartCoroutine(RgbaCoroutine());
 			}
 			catch (Exception e)
 			{
-				print("what the fuck");
+				print(e);
 			}
 		}
+	}
+
+	void OnApplicationQuit()
+	{
+		StopRgbaCoroutine();
 	}
 }
