@@ -7,7 +7,7 @@ public class ApiAlbedo : ApiClient {
 	private Rgba rgba;
 
 	void Awake () {
-		Rgba rgba = RgbaApi.GetRgba();
+//		Rgba rgba = GetRgba();
 		albedo = new Color(rgba.R, rgba.G, rgba.B, rgba.A);
 		Renderer rend = GetComponent<Renderer>();
 		rend.material.SetColor("Albedo", albedo);

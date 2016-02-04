@@ -8,9 +8,14 @@ public class ApiBackgroundColor : ApiClient {
 
 	private Camera camera;
 
-	void FixedUpdate () {
+	void Awake()
+	{
 		camera = GetComponent<Camera>();
-		Rgba rgba = RgbaApi.GetRgba();
+	}
+
+	void LateUpdate () {
+		//		Rgba rgba = GetRgba();
+		Rgba rgba = ApiClient.instance.currentRgba;
 		backgroundColor = new Color(rgba.R/255, rgba.G/255, rgba.B/255, rgba.A);
 		camera.backgroundColor = backgroundColor;
 	}
