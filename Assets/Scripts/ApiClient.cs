@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Net;
 
@@ -26,7 +27,7 @@ public class ApiClient : MonoBehaviour
 	#region Rgba
 
 	[System.Serializable]
-	public struct Rgba
+	public class Rgba
 	{
 		public float R;
 		public float G;
@@ -44,8 +45,15 @@ public class ApiClient : MonoBehaviour
 	{
 		while (freshRgba)
 		{
-			string jsonResponse = syncClient.DownloadString(rgbaUrl);
-			currentRgba = JsonUtility.FromJson<Rgba>(jsonResponse);
+			try
+			{
+				string jsonResponse = syncClient.DownloadString(rgbaUrl);
+				currentRgba = JsonUtility.FromJson<Rgba>(jsonResponse);
+			}
+			catch (Exception e)
+			{
+				print(e);
+			}
 			yield return null;
 		}
 	}

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-public class ApiBackgroundColor : ApiClient {
+public class ApiBackgroundColor : MonoBehaviour {
 
 	private Color backgroundColor;
-	private Rgba rgba;
+	private ApiClient.Rgba rgba;
 
 	private Camera camera;
 
@@ -14,9 +14,15 @@ public class ApiBackgroundColor : ApiClient {
 	}
 
 	void LateUpdate () {
-		//		Rgba rgba = GetRgba();
-		Rgba rgba = ApiClient.instance.currentRgba;
+		ApiClient.Rgba rgba = ApiClient.instance.currentRgba;
 		backgroundColor = new Color(rgba.R/255, rgba.G/255, rgba.B/255, rgba.A);
-		camera.backgroundColor = backgroundColor;
+		try
+		{
+			camera.backgroundColor = backgroundColor;
+		}
+		catch (Exception e)
+		{
+			print(e);
+		}
 	}
 }
