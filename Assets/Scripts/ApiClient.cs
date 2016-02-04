@@ -58,19 +58,21 @@ public class ApiClient : MonoBehaviour
 		}
 	}
 
-	public void StopRgba()
-	{
-		freshRgba = false;
-	}
-
 	#endregion
 
 	public void Start()
 	{
 		if (freshRgba == false)
 		{
-			freshRgba = true;
-			StartCoroutine(KeepRgbaFresh());
+			try
+			{
+				freshRgba = true;
+				StartCoroutine(KeepRgbaFresh());
+			}
+			catch (Exception e)
+			{
+				print("what the fuck");
+			}
 		}
 	}
 }
