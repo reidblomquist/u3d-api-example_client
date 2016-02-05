@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using System.Net;
+
+
 
 public class ApiClient : MonoBehaviour
 {
@@ -39,22 +40,22 @@ public class ApiClient : MonoBehaviour
 
 	private string rgbaUrl = "http://reidblomquist.com:6969/rgba";
 	private bool freshRgba = false;
-	private WebClient syncClient = new WebClient();
+	private string rgbaResponse;
 
 	IEnumerator RgbaCoroutine()
 	{
 		while (freshRgba)
 		{
-			try
+			WWW www = new WWW(rgbaUrl);
+			yield return www;
+			if (www.error == null)
 			{
-				string jsonResponse = syncClient.DownloadString(rgbaUrl);
-				currentRgba = JsonUtility.FromJson<Rgba>(jsonResponse);
+				currentRgba = JsonUtility.FromJson<Rgba>(www.text);
 			}
-			catch (Exception e)
+			else
 			{
-				print(e);
+				print("failed json request moar info: " + www.text);
 			}
-			yield return null;
 		}
 	}
 

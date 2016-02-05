@@ -16,7 +16,7 @@ public class ApiBackgroundColor : MonoBehaviour {
 	void LateUpdate () {
 		try
 		{
-			ApiClient.Rgba rgba = ApiClient.instance.currentRgba;
+			rgba = ApiClient.instance.currentRgba;
 			backgroundColor = new Color(rgba.R/255, rgba.G/255, rgba.B/255, rgba.A);
 			camera.backgroundColor = backgroundColor;
 		}
