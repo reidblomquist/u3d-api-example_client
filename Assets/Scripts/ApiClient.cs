@@ -2,8 +2,6 @@
 using System;
 using System.Collections;
 
-
-
 public class ApiClient : MonoBehaviour
 {
 	#region Persistance
