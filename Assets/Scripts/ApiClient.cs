@@ -38,7 +38,6 @@ public class ApiClient : MonoBehaviour
 
 	private string rgbaUrl = "http://reidblomquist.com:6969/rgba";
 	private bool freshRgba = false;
-	private string rgbaResponse;
 
 	IEnumerator RgbaCoroutine()
 	{
