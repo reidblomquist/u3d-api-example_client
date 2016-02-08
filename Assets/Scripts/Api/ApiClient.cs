@@ -71,6 +71,14 @@ public class ApiClient : MonoBehaviour
 
 	#endregion
 
+	// Load songs from soundcloud
+	// TODO: Grab list of songs that can be loaded into decks and mixed once processed
+	// TODO: See if we can serialize this/cache it somewhere (in file w/in build?)
+	// TODO: Generate visuals based on audio
+	#region Soundcloud
+	#endregion
+
+
 	void Start()
 	{
 		if (freshRgba == false)
